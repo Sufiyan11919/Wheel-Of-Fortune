@@ -4,44 +4,26 @@ import com.google.cloud.spring.data.datastore.core.mapping.Entity;
 import org.springframework.data.annotation.Id;
 
 /**
- * Represents a user entity with information such as user ID, handle, email, score, and date.
+ * Entity class representing a user in the application.
  */
 @Entity(name = "users")
 public class User {
 
-    /**
-     * Unique identifier for the user.
-     */
     @Id
     private Long id;
 
-    /**
-     * Email address of the user.
-     */
     private String email;
-
-    /**
-     * User's chosen handle or username.
-     */
     private String handle;
-
-    /**
-     * Date associated with the user, typically registration date.
-     */
     private String date;
-
-    /**
-     * User ID associated with the user, which could be different from the username.
-     */
     private String userId;
 
     /**
-     * Constructs a new User with the specified parameters.
+     * Constructs a new User entity with the specified details.
      *
      * @param userId The unique identifier for the user.
-     * @param handle The user's chosen handle or username.
-     * @param email  The email address of the user.
-     * @param date   The date associated with the user, typically the registration date.
+     * @param handle The user's handle or username.
+     * @param email The user's email address.
+     * @param date The date when the user entity was created.
      */
     public User(String userId, String handle, String email, String date) {
         this.handle = handle;
@@ -51,43 +33,43 @@ public class User {
     }
 
     /**
-     * Gets the unique identifier for the user.
+     * Gets the unique identifier of the user entity.
      *
-     * @return The user's unique identifier.
+     * @return The user entity's unique identifier.
      */
     public long getId() {
         return this.id;
     }
 
     /**
-     * Sets the unique identifier for the user.
+     * Sets the unique identifier of the user entity.
      *
-     * @param id The new unique identifier for the user.
+     * @param id The new unique identifier for the user entity.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Gets the user ID associated with the user.
+     * Gets the user's unique identifier.
      *
-     * @return The user ID.
+     * @return The user's unique identifier.
      */
     public String getUserId() {
         return userId;
     }
 
     /**
-     * Sets the user ID for the user.
+     * Sets the user's unique identifier.
      *
-     * @param userId The new user ID.
+     * @param userId The new unique identifier for the user.
      */
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
     /**
-     * Gets the email address of the user.
+     * Gets the user's email address.
      *
      * @return The user's email address.
      */
@@ -96,36 +78,36 @@ public class User {
     }
 
     /**
-     * Sets the email address for the user.
+     * Sets the user's email address.
      *
-     * @param email The new email address.
+     * @param email The new email address for the user.
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * Gets the date associated with the user.
+     * Gets the date when the user entity was created.
      *
-     * @return The date, typically the registration date.
+     * @return The date when the user entity was created.
      */
     public String getDate() {
         return date;
     }
 
     /**
-     * Sets the date for the user, typically the registration date.
+     * Sets the date when the user entity was created.
      *
-     * @param date The new date.
+     * @param date The new creation date for the user entity.
      */
     public void setDate(String date) {
         this.date = date;
     }
 
     /**
-     * Gets the user's chosen handle or username.
+     * Gets the user's handle or username.
      *
-     * @return The user's handle.
+     * @return The user's handle or username.
      */
     public String getHandle() {
         return handle;
@@ -134,22 +116,22 @@ public class User {
     /**
      * Sets the user's handle or username.
      *
-     * @param handle The new handle or username.
+     * @param handle The new handle or username for the user.
      */
     public void setHandle(String handle) {
         this.handle = handle;
     }
 
     /**
-     * Returns a string representation of the User object.
+     * Generates a string representation of the User object.
      *
-     * @return A string representation of the User.
+     * @return A string representation of the User object.
      */
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", score=" + email +
+                ", email='" + email + '\'' +
                 ", handle='" + handle + '\'' +
                 ", date='" + date + '\'' +
                 ", userId='" + userId + '\'' +

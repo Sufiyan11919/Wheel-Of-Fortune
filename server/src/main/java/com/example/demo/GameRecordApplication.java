@@ -3,37 +3,38 @@ package com.example.demo;
 import com.google.api.client.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+// import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
 import java.util.List;
 
 /**
- * Spring Boot application with Spring Shell commands for managing GameRecord entities.
+ * The GameRecordApplication class is the main entry point for the Spring Shell application.
+ * It provides shell commands for saving, loading, and removing game records.
  */
 @ShellComponent
-//@SpringBootApplication
 public class GameRecordApplication {
+
     @Autowired
     GameRecordRepository gameRecordRepository;
 
     /**
-     * The main method that starts the Spring Boot application.
+     * The main method that starts the Spring Shell application.
      *
-     * @param args Command-line arguments passed to the application.
+     * @param args The command line arguments.
      */
     public static void main(String[] args) {
         SpringApplication.run(GameRecordApplication.class, args);
     }
 
     /**
-     * Shell command for saving a GameRecord to Cloud Datastore.
+     * Saves a game record to Cloud Datastore.
      *
-     * @param userId The user ID associated with the game record.
+     * @param userId The user identifier associated with the game record.
      * @param score  The score achieved in the game.
-     * @param date   The date of the game record.
-     * @return A string representation of the saved GameRecord.
+     * @param date   The date when the game record was created.
+     * @return A string representation of the saved game record.
      */
     @ShellMethod("Saves a gameRecord to Cloud Datastore: save-gameRecord <userid> <score> <date>")
     public String saveGameRecord(String userId, int score, String date) {
@@ -42,9 +43,9 @@ public class GameRecordApplication {
     }
 
     /**
-     * Shell command for loading all GameRecord entities.
+     * Loads all game records from Cloud Datastore.
      *
-     * @return A string representation of all GameRecord entities.
+     * @return A string representation of all game records.
      */
     @ShellMethod("Loads all GameRecord")
     public String findAllGameRecord() {
@@ -53,10 +54,10 @@ public class GameRecordApplication {
     }
 
     /**
-     * Shell command for loading GameRecord entities by user ID.
+     * Loads game records by user identifier.
      *
-     * @param userId The user ID to search for.
-     * @return A string representation of the GameRecord entities with the given user ID.
+     * @param userId The user identifier to search for.
+     * @return A string representation of game records matching the specified user identifier.
      */
     @ShellMethod("Loads record by user: find-by-userID <userId>")
     public String findByUserId(String userId) {
@@ -65,7 +66,7 @@ public class GameRecordApplication {
     }
 
     /**
-     * Shell command for removing all GameRecord entities.
+     * Removes all game records from Cloud Datastore.
      */
     @ShellMethod("Remove all records")
     public void removeAllGameRecords() {

@@ -4,15 +4,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Main class to bootstrap the Spring Boot application.
+ * The DemoApplication class serves as the entry point for the Spring Boot application.
+ * It contains the main method to start the application using SpringApplication.
  */
 @SpringBootApplication
 public class DemoApplication {
-    
+
     /**
-     * The main method that starts the Spring Boot application.
+     * The main method is the entry point for the Spring Boot application.
+     * It calls SpringApplication.run() to start the application.
      *
-     * @param args Command-line arguments passed to the application.
+     * @param args The command line arguments passed to the application.
      */
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);

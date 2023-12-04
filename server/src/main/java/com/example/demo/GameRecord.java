@@ -4,37 +4,24 @@ import com.google.cloud.spring.data.datastore.core.mapping.Entity;
 import org.springframework.data.annotation.Id;
 
 /**
- * Represents a game record entity with information such as user ID, score, and date.
+ * The GameRecord class represents a game record entity to be stored in the datastore.
+ * It is annotated with @Entity to specify the entity name as "GameRecords".
  */
 @Entity(name = "GameRecords")
 public class GameRecord {
-    /**
-     * Unique identifier for the game record.
-     */
+
     @Id
     private Long id;
-
-    /**
-     * Score achieved in the game.
-     */
     private int score;
-
-    /**
-     * Date of the game record.
-     */
     private String date;
-
-    /**
-     * User ID associated with the game record.
-     */
     private String userId;
 
     /**
-     * Constructs a new GameRecord with the specified parameters.
+     * Constructs a new GameRecord with the specified userId, score, and date.
      *
-     * @param userId The user ID associated with the game record.
+     * @param userId The user identifier associated with the game record.
      * @param score  The score achieved in the game.
-     * @param date   The date of the game record.
+     * @param date   The date when the game record was created.
      */
     public GameRecord(String userId, int score, String date) {
         this.userId = userId;
@@ -43,36 +30,36 @@ public class GameRecord {
     }
 
     /**
-     * Gets the unique identifier for the game record.
+     * Gets the unique identifier of the game record.
      *
-     * @return The game record's unique identifier.
+     * @return The id of the game record.
      */
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
     /**
-     * Sets the unique identifier for the game record.
+     * Sets the unique identifier of the game record.
      *
-     * @param id The new unique identifier for the game record.
+     * @param id The id to set.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Gets the user ID associated with the game record.
+     * Gets the user identifier associated with the game record.
      *
-     * @return The user ID.
+     * @return The userId of the game record.
      */
     public String getUserId() {
         return userId;
     }
 
     /**
-     * Sets the user ID for the game record.
+     * Sets the user identifier associated with the game record.
      *
-     * @param userId The new user ID.
+     * @param userId The userId to set.
      */
     public void setUserId(String userId) {
         this.userId = userId;
@@ -81,43 +68,43 @@ public class GameRecord {
     /**
      * Gets the score achieved in the game.
      *
-     * @return The score.
+     * @return The score of the game record.
      */
     public int getScore() {
         return score;
     }
 
     /**
-     * Sets the score for the game record.
+     * Sets the score achieved in the game.
      *
-     * @param score The new score.
+     * @param score The score to set.
      */
     public void setScore(int score) {
         this.score = score;
     }
 
     /**
-     * Gets the date of the game record.
+     * Gets the date when the game record was created.
      *
-     * @return The date.
+     * @return The date of the game record.
      */
     public String getDate() {
         return this.date;
     }
 
     /**
-     * Sets the date for the game record.
+     * Sets the date when the game record was created.
      *
-     * @param date The new date.
+     * @param date The date to set.
      */
     public void setDate(String date) {
         this.date = date;
     }
 
     /**
-     * Returns a string representation of the GameRecord object.
+     * Returns a string representation of the game record.
      *
-     * @return A string representation of the GameRecord.
+     * @return A string containing the id, score, date, and userId of the game record.
      */
     @Override
     public String toString() {

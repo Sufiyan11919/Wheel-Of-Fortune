@@ -70,6 +70,11 @@ public class GameRecordController {
         return gameRecordList;
     }
 
+    /**
+     * Endpoint for removing all GameRecord entities.
+     *
+     * @return A message indicating the success or failure of the operation.
+     */
     @GetMapping("/removeAllGameRecords")
     @CrossOrigin(origins = "*")
     public String removeAllGameRecords() {
@@ -77,6 +82,12 @@ public class GameRecordController {
         return "success";
     }
 
+    /**
+     * Endpoint for removing a GameRecord entity by ID.
+     *
+     * @param id The ID of the GameRecord entity to be removed.
+     * @return A message indicating the success or failure of the operation.
+     */
     @GetMapping("/removeGameRecordById")
     @CrossOrigin(origins = "*")
     public String removeGameRecordById(@RequestParam Long id) {
@@ -84,7 +95,12 @@ public class GameRecordController {
         return "success";
     }
 
-
+    /**
+     * Endpoint for retrieving a GameRecord entity by Google ID.
+     *
+     * @param googleId The Google ID to search for a GameRecord entity.
+     * @return The GameRecord entity with the specified Google ID, or null if not found.
+     */
     @GetMapping("/findGameRecordByGoogleId")
     @CrossOrigin(origins = "*")
     public GameRecord findGameRecordByGoogleId(@RequestParam String googleId) {
@@ -95,5 +111,3 @@ public class GameRecordController {
         return null;
     }
 }
-
-

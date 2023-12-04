@@ -5,17 +5,24 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Repository interface for accessing and managing GameRecord entities in a datastore.
+ * Repository interface for managing {@link GameRecord} entities in Cloud Datastore.
  */
 public interface GameRecordRepository extends DatastoreRepository<GameRecord, Long> {
 
     /**
-     * Finds a list of game records based on the provided user ID.
+     * Finds a list of GameRecord entities by user ID.
      *
-     * @param userId The user ID to search for.
+     * @param userId The user ID to filter GameRecord entities.
      * @return A list of GameRecord entities with the given user ID.
      */
     List<GameRecord> findByUserId(String userId);
 
+    /**
+     * Finds a GameRecord entity by Google ID.
+     *
+     * @param googleId The Google ID to search for a GameRecord entity.
+     * @return An {@link Optional} containing the GameRecord entity with the specified Google ID,
+     *         or empty if not found.
+     */
     Optional<GameRecord> findByGoogleId(String googleId);
 }

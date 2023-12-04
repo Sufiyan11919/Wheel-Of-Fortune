@@ -1,9 +1,11 @@
+// Import necessary dependencies and styles
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import "./App.css"; // Import your CSS file
 import axios from "axios";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCjMYiU_fOXVL41n2CDbDwwMG1TUTjLWHE",
   authDomain: "wheeloffortunereact-407102.firebaseapp.com",
@@ -15,6 +17,7 @@ const firebaseConfig = {
 };
 initializeApp(firebaseConfig);
 
+// Function to sign in with Google
 const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
@@ -27,7 +30,9 @@ const signInWithGoogle = () => {
     });
 };
 
+// Main App component
 function App() {
+  // State variables
   const [userId, setUserId] = useState("");
   const [pageNo, setPageNo] = useState(0);
   const [records, setRecords] = useState([]);
@@ -41,8 +46,9 @@ function App() {
   const [gameOver, setGameOver] = useState(false);
   const [solved, setSolved] = useState(false);
   const [handle, setHandle] = useState("");
-  const [blinkColors, setBlinkColors] = useState([]);
+  const [blinkColors, setBlinkColors] = useState([]); // State for blink colors
 
+  // UseEffect to listen for authentication changes
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -55,10 +61,12 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  // UseEffect to start a new game when phrases change
   useEffect(() => {
     newGame();
   }, [phrases]);
 
+  // Function to display all game records
   const displayAllRecords = async () => {
     try {
       const response = await axios.get("https://wheeloffortunereact-407102.uw.r.appspot.com/findAllGameRecord");
@@ -68,6 +76,7 @@ function App() {
     }
   };
 
+  // Function to display all user records
   const displayAllUserRecords = async () => {
     try {
       const response = await axios.get("https://wheeloffortunereact-407102.uw.r.appspot.com/findAllUser");
@@ -77,6 +86,7 @@ function App() {
     }
   };
 
+  // Function to generate a hidden phrase
   const generateHiddenPhrase = (currentPhrase) => {
     const updatedHiddenPhrase = currentPhrase
       .split("")
@@ -85,6 +95,7 @@ function App() {
     setHiddenPhrase(updatedHiddenPhrase);
   };
 
+  // Function to update blink colors based on correct and incorrect guesses
   const updateBlinkColors = () => {
     const newBlinkColors = phrase.split("").map((char, index) => {
       if (char.match(/[a-zA-Z]/)) {
@@ -95,6 +106,7 @@ function App() {
     setBlinkColors(newBlinkColors);
   };
 
+  // Function to process a guess
   const processGuess = (guess) => {
     if (previousGuesses.includes(guess.toLowerCase())) {
       alert("You already guessed that letter! Please a different letter.");
@@ -134,10 +146,12 @@ function App() {
     updateBlinkColors();
   };
 
+  // Function to handle name change
   const handleNameChange = (event) => {
     setHandle(event.target.value);
   };
 
+  // Function to handle name submission
   const handleSubmitName = async () => {
     setPageNo(3);
     await displayAllRecords();
@@ -164,6 +178,7 @@ function App() {
     }
   };
 
+  // Function to display user's games
   const displayMyGames = async () => {
     try {
       const response = await axios.get(`https://wheeloffortunereact-407102.uw.r.appspot.com/findByUserId?userId=${userId}`);
@@ -174,6 +189,7 @@ function App() {
     }
   };
 
+  // Function to display the leaderboard
   const displayLeaderboard = async () => {
     try {
       const response = await axios.get("https://wheeloffortunereact-407102.uw.r.appspot.com/findAllGameRecord");
@@ -184,19 +200,21 @@ function App() {
     }
   };
 
+  // Function to start a new game
   const newGame = () => {
     setHiddenPhrase("");
     setPreviousGuesses("");
     setWrongGuesses(0);
     setGameOver(false);
     setSolved(false);
-    setBlinkColors([]); 
+    setBlinkColors([]); // Reset blink colors
 
     const randomIndex = Math.floor(Math.random() * phrases.length);
     setPhrase(phrases[randomIndex]);
     generateHiddenPhrase(phrases[randomIndex]);
   };
 
+  // Render the UI
   return (
     <>
       {!userId && (
@@ -222,7 +240,7 @@ function App() {
                 ))}
               </div>
               <div className="custom-previous-guesses">
-                Previous Guesses: {previousGuesses}
+                Previous Guesses Count: {previousGuesses}
               </div>
               <input
                 type="text"
@@ -239,27 +257,27 @@ function App() {
                 }}
               />
               <div className="custom-wrong-guesses">
-                Wrong Guesses: {wrongGuesses}
+                Wrong Guesses Count: {wrongGuesses}
               </div>
             </div>
           ) : (
             <div className="custom-end-game-message">
               {solved && pageNo === 0 && (
-                <div className="custom-win-message">YOU WON!!</div>
+                <div className="custom-win-message">YOU WON THE GAME</div>
               )}
               {!solved && pageNo === 0 && (
-                <div className="custom-lose-message">Game Over!</div>
+                <div className="custom-lose-message">Game Over!!!!</div>
               )}
               {pageNo === 0 && (
-                <div>
-                  <p>Do you want to save your game record?</p>
-                  <button type="button" onClick={() => setPageNo(2)}>
-                    Yes
-                  </button>
-                  <button type="button" onClick={() => setPageNo(1)}>
-                    No
-                  </button>
-                </div>
+                <div style={{ width: '300px', margin: '20px auto' }}>
+                <p>Do you want to save your game record?</p>
+                <button type="button" onClick={() => setPageNo(2)}>
+                  Yes
+                </button>
+                <button type="button" onClick={() => setPageNo(1)}>
+                  No
+                </button>
+              </div>
               )}
               {pageNo === 1 && <button onClick={newGame}>New Game</button>}
 
@@ -332,4 +350,5 @@ function App() {
   );
 }
 
+// Export the App component
 export default App;

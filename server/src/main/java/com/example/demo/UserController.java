@@ -2,20 +2,15 @@ package com.example.demo;
 
 import java.util.ArrayList;
 import java.util.List;
-// import java.util.Optional;
-
-// The import org.springframework.web.bind.annotation.DeleteMapping is not used and can be removed
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-// The import org.springframework.web.bind.annotation.RequestParam is not used and can be removed
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ResponseBody;
-// import javax.servlet.http.HttpSession;
 
 /**
- * Controller class for managing User entities through RESTful endpoints.
+ * REST controller class for managing User entities through RESTful endpoints.
  */
 @RestController
 public class UserController {
@@ -61,7 +56,9 @@ public class UserController {
         user.forEach(userList::add);
         return userList;
     }
-    
+
+    // Uncomment the following code block if needed.
+    /*
     @GetMapping("/findUserByGoogleId")
     @ResponseBody
     @CrossOrigin(origins = "*")
@@ -69,7 +66,14 @@ public class UserController {
         List<User> user = this.userRepository.findByGoogleId(googleId);
         return user;
     }
+    */
 
+    /**
+     * Endpoint for deleting a User entity.
+     *
+     * @param user The User entity to be deleted.
+     * @return A list of all remaining User entities after deletion.
+     */
     @PostMapping("/deleteUser")
     @CrossOrigin(origins = "*")
     public List<User> deleteUser(@RequestBody User user) {
@@ -77,6 +81,12 @@ public class UserController {
         return this.findAllUser();
     }
 
+    /**
+     * Endpoint for updating a User entity.
+     *
+     * @param user The updated User entity.
+     * @return A list of all User entities after the update.
+     */
     @PostMapping("/updateUser")
     @CrossOrigin(origins = "*")
     public List<User> updateUser(@RequestBody User user) {
