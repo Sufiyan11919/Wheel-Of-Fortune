@@ -1,0 +1,68 @@
+/* Add these styles for a light grey background */
+body {
+  background-color: gray; 
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px; 
+  height: 100vh;
+}
+
+.custom-app {
+  background-color: #fff; 
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  text-align: center;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-size: 16px; 
+}
+
+
+.custom-end-game-message {
+  text-align: center;
+}
+
+.custom-phrase,
+.custom-previous-guesses,
+.custom-wrong-guesses,
+.custom-win-message,
+.custom-lose-message,
+.custom-record-item {
+  font-size: 1.5em; 
+}
+
+button {
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #4caf50; 
+}
+
+.custom-app-container {
+  background-color: navy;
+  opacity: 0.8;
+  color: gray;
+}
+
+.custom-app{
+  background-color: navy;
+  opacity: 0.8  ;
+  color: gray;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  text-align: center;
+}
