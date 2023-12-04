@@ -61,7 +61,7 @@ function App() {
 
   const displayAllRecords = async () => {
     try {
-      const response = await axios.get("finall all records");
+      const response = await axios.get("https://wheeloffortunereact-407102.uw.r.appspot.com/findAllGameRecord");
       setRecords(response.data);
     } catch (error) {
       console.error(error);
@@ -70,7 +70,7 @@ function App() {
 
   const displayAllUserRecords = async () => {
     try {
-      const response = await axios.get("findall user records");
+      const response = await axios.get("https://wheeloffortunereact-407102.uw.r.appspot.com/findAllUser");
       setUserRecords(response.data);
     } catch (error) {
       console.error(error);
@@ -147,14 +147,14 @@ function App() {
     const user = auth.currentUser;
 
     try {
-      await axios.post("save user", {
+      await axios.post("https://wheeloffortunereact-407102.uw.r.appspot.com/saveUser", {
         userId: user.displayName,
         handle: handle,
         email: user.email,
         date: new Date().toISOString().slice(0, 10),
       });
 
-      await axios.post("save game records", {
+      await axios.post("https://wheeloffortunereact-407102.uw.r.appspot.com/saveGameRecord", {
         userId: user.displayName,
         score: maxGuesses - wrongGuesses,
         date: new Date().toISOString().slice(0, 10),
@@ -166,7 +166,7 @@ function App() {
 
   const displayMyGames = async () => {
     try {
-      const response = await axios.get(`find by id`);
+      const response = await axios.get(`https://wheeloffortunereact-407102.uw.r.appspot.com/findByUserId?userId=${userId}`);
       setRecords(response.data);
       setPageNo(4);
     } catch (error) {
@@ -176,7 +176,7 @@ function App() {
 
   const displayLeaderboard = async () => {
     try {
-      const response = await axios.get("all game records");
+      const response = await axios.get("https://wheeloffortunereact-407102.uw.r.appspot.com/findAllGameRecord");
       setRecords(response.data);
       setPageNo(5);
     } catch (error) {
@@ -297,15 +297,33 @@ function App() {
                   </div>
                 ))}
 
-              {pageNo === 5 &&
-                records.map((record) => (
-                  <div className="custom-record-item" key={record.id}>
-                    <h3>{record.id}</h3>
-                    <p>by {record.score}</p>
-                    <p> {record.date}</p>
-                    <p> {record.userId}</p>
+                {pageNo === 5 && (
+                  <div className="page-container">
+                    <>
+                      <h1 className="header_leaderBoard">Leaderboard</h1>
+                      <table className="leaderboard-table">
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                            <th>User ID</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {records.map((record) => (
+                            <tr className="custom-record-item" key={record.id}>
+                              <td>{record.id}</td>
+                              <td>{record.score}</td>
+                              <td>{record.date}</td>
+                              <td>{record.userId}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </>
                   </div>
-                ))}
+                )}
             </div>
           )}
         </div>
